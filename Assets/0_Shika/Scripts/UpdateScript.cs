@@ -18,6 +18,12 @@ public class UpdateScript: MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        importUIScript.ExcuseWords();
+
+        Debug.Log(EventTriggerScript.TemplateNumber);
+        if(EventTriggerScript.TemplateNumber == 0)
+        {
+            Debug.Log(importUIScript.pickWordsArray[0] + "が" + importUIScript.pickWordsArray[1] + "だから");
+        }        
     }
 }

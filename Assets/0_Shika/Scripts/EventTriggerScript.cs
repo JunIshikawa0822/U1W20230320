@@ -7,22 +7,24 @@ public class EventTriggerScript : MonoBehaviour
 {
     GameObject DropArea;
     bool isCanvas;
+    public static int TemplateNumber = 0;
+    GameObject preParent;
 
-
-    public void OnBeginDrag()
+    public void OnWordsPanelBeginDrag()
     {
-        //Debug.Log("押された");
-        transform.parent = GameObject.Find("Canvas").transform;
+        //Debug.Log("押された");       
+        preParent = transform.parent.gameObject;
         isCanvas = true;
         //Debug.Log(isCanvas);
+        transform.parent = GameObject.Find("Canvas").transform;
     }
 
-    public void OnDrag()
+    public void OnWordsPanelDrag()
     {
         transform.position = Input.mousePosition;
     }
 
-    public void OnEndDrag()
+    public void OnWordsPanelEndDrag()
     {
         //Debug.Log("終わった");
 
@@ -38,17 +40,27 @@ public class EventTriggerScript : MonoBehaviour
 
         foreach (RaycastResult target in getUIList)
         {
+            //Debug.Log(target.gameObject.name);
             if (target.gameObject.name == "TestStartPanel" || target.gameObject.name == "TestEndPanel")
             {
                 DropArea = target.gameObject;
                 //Debug.Log("TestPanel検知成功");
+                transform.SetParent(DropArea.transform);
                 isCanvas = false;
             }
 
-            if(target.gameObject.name == "ObjectPanel")
+            if (target.gameObject.name == "ObjectPanel1" || target.gameObject.name == "ObjectPanel2")
             {
                 DropArea = target.gameObject;
-                transform.SetParent(DropArea.transform);
+                if (DropArea.transform.childCount < 1)
+                {
+                    transform.SetParent(DropArea.transform);
+                }
+                else
+                {
+                    DropArea = preParent;
+                    transform.SetParent(DropArea.transform);
+                }
             }
         }
 
@@ -80,6 +92,12 @@ public class EventTriggerScript : MonoBehaviour
             transform.SetParent(DropArea.transform);
             transform.SetSiblingIndex(index);
         }
-    }        
+    }
+
+    public void OnTemplateMouseDown()
+    {
+        TemplateNumber = this.gameObject.transform.GetSiblingIndex();
+        //Debug.Log(TemplateNumber);
+    }
 }
 

@@ -178,7 +178,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 8858996973459199493}
           m_TargetAssemblyTypeName: EventTriggerScript, Assembly-CSharp
-          m_MethodName: OnBeginDrag
+          m_MethodName: OnWordsPanelBeginDrag
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -194,7 +194,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 8858996973459199493}
           m_TargetAssemblyTypeName: EventTriggerScript, Assembly-CSharp
-          m_MethodName: OnDrag
+          m_MethodName: OnWordsPanelDrag
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -210,7 +210,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 8858996973459199493}
           m_TargetAssemblyTypeName: EventTriggerScript, Assembly-CSharp
-          m_MethodName: OnEndDrag
+          m_MethodName: OnWordsPanelEndDrag
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -232,3 +232,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d822a9a0a65244c48f774498eb5dda1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTemplateSet: 0
