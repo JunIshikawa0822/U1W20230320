@@ -9,7 +9,10 @@ public class UpdateScript: MonoBehaviour
     void Start()
     {
         importUIScript.WordListInit();
-        importUIScript.CardInstantiate();
+        importUIScript.ExcuseTemplateInit();
+
+        importUIScript.WordCardsInstantiate();
+        importUIScript.ExcuseTemplateInstantiate();
     }
 
     // Update is called once per frame

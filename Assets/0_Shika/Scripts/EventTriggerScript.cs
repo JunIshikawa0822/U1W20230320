@@ -8,6 +8,7 @@ public class EventTriggerScript : MonoBehaviour
     GameObject DropArea;
     bool isCanvas;
 
+
     public void OnBeginDrag()
     {
         //Debug.Log("押された");
@@ -42,6 +43,12 @@ public class EventTriggerScript : MonoBehaviour
                 DropArea = target.gameObject;
                 //Debug.Log("TestPanel検知成功");
                 isCanvas = false;
+            }
+
+            if(target.gameObject.name == "ObjectPanel")
+            {
+                DropArea = target.gameObject;
+                transform.SetParent(DropArea.transform);
             }
         }
 
