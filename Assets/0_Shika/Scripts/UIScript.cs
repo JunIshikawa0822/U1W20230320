@@ -21,7 +21,14 @@ public class UIScript : MonoBehaviour
 
     public void WordListInit()
     {
-        excuseWordsList = new List<string>() { "犬", "猫", "石川", "矢野", "仲宗根", "加藤", "髙橋", "渡辺", "佐藤", "田中", "堀", "森永", "黒川", "伊藤", "中村" };
+        excuseWordsList = new List<string>()
+        {
+            "犬", "猫", "石川", "矢野", "仲宗根",
+            "加藤", "髙橋", "渡辺", "佐藤", "田中",
+            "堀", "森永", "黒川", "伊藤", "中村",
+            "山口", "保科", "寺内", "磯", "三合",
+            "井上", "伝", "多田", "中川", "房安", "藤堂"
+        };
     }
 
     public void ExcuseTemplateInit()
