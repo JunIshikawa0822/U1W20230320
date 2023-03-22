@@ -70,3 +70,8 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+Assets/1_Kotatsu/fonts.meta
+Assets/1_Kotatsu/fonts/ZenKakuGothicNew-Regular SDF.asset
+Assets/1_Kotatsu/fonts/ZenKakuGothicNew-Regular SDF.asset.meta
+Assets/1_Kotatsu/fonts/ZenKakuGothicNew-Regular.ttf
+Assets/1_Kotatsu/fonts/ZenKakuGothicNew-Regular.ttf.meta
