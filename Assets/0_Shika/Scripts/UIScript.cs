@@ -5,15 +5,16 @@ using UnityEngine.UI;
 
 public class UIScript : MonoBehaviour
 {
-    public List<string> excuseNounWordsList = new List<string>();
-    public List<string> excuseVerbWordsList = new List<string>();
-    public List<string> excuseAdjectiveWordsList = new List<string>();
+    List<string> excuseNounWordsList = new List<string>();
+    List<string> excuseVerbWordsList = new List<string>();
+    List<string> excuseAdjectiveWordsList = new List<string>();
 
-    public List<string> excuseTemplatesList = new List<string>();
+    List<string> excuseTemplatesList = new List<string>();
+    List<string> themeList = new List<string>();
 
-    public string[] usableNounWordsArray = new string[5];
-    public string[] usableVerbWordsArray = new string[5];
-    public string[] usableAdjectiveWordsArray = new string[5];
+    string[] usableNounWordsArray = new string[5];
+    string[] usableVerbWordsArray = new string[5];
+    string[] usableAdjectiveWordsArray = new string[5];
 
     public string[] pickWordsArray = new string[3];
 
@@ -22,20 +23,25 @@ public class UIScript : MonoBehaviour
     public GameObject[] PartofSpeechPanelArray = new GameObject[3];
     public GameObject[] StartPanelArray = new GameObject[3];
 
-    public GameObject excusePanelPrefab, exTemplateContent;
-    //nounWordsPanelPrefab, verbWordsPanelPrefab, adjectiveWordsPanelPrefab
-    //nounWordsStartPanel, verbWordsStartPanel, adjectiveWordsStartPanel
-
-    GameObject NounPanel1, NounPanel2, VerbPanel1, VerbPanel2, AdjPanel1, AdjPanel2;
+    public GameObject excusePanelPrefab, exTemplateContent, TemplateDisplayswitcher, exTemplateScrollView;
+    
     // Start is called before the first frame update
 
     public void NounWordListInit()
     {
         excuseNounWordsList = new List<string>()
         {
-            "僕", "お母さん", "彼女", "犬", "おじいちゃん",
+            "僕", "お母さん", "彼女", "犬", "おじいさん", "おばあさん", 
             "ご飯", "ゲーム機", "お茶", "スマホ", "コップ",
-            "定期券"
+            "定期券", "お金", "新聞", "風邪", "熱", "病気", "電車", "信号",
+            "道路", "車", "バス", "タクシー", "バイク", "自転車", "踏切", "フェリー",
+            "交差点", "ブレーキ", "パトカー", "バス停", "乗り換え", "自動運転", "トンネル",
+            "橋","田んぼ","溝","信号無視","一時停止","交通規制","煽り運転","運転見合わせ",
+            "駅前","駅ビル","レンタカー","リツイート","ジャンクフード","インフルエンサー",
+            "第二種電気工事士","タスク","フィットネスジム", "ビッグデータ", "秘書", "着ぐるみ",
+            "タコス","トラック","写生大会", "寿司","椅子","先輩","のど飴","廿日市市","ワンタイムパスワード",
+            "時間","学校","映画","旅行","お菓子","色","健康","政治家","街頭演説","ティッシュ配り",
+            "バンジージャンプ","ハイジャック","新規事業開発", "就活", "研究", "教授", "蛾"
         };
     }
 
@@ -43,9 +49,14 @@ public class UIScript : MonoBehaviour
     {
         excuseVerbWordsList = new List<string>()
         {
-            "走った", "壊した", "転んだ", "無視した", "拾った",
-            "投げた", "座った", "泳いだ", "持った", "倒した",
-            "寝た", "見た", "買った", "調べた", "こぼした"
+            "走っ", "壊し", "無視し", "拾っ",
+            "投げ", "座っ", "持っ", "倒し",
+            "寝", "見", "買っ", "調べ", "こぼし", "逃げ",
+            "忘れ", "聞い", "のぞい", "巻き込まれ",
+            "かかっ", "冷え", "終わっ", "変わっ", "負け",
+            "助け", "壊れ", "損ね", "逃し", "燃え", "揺れ",
+         　  "捕まっ", "絡まれ", "怯え", "傷つい", "ぶつけ",
+            "驚い", "なっ", "し", "見てい", "出会っ", "遅れ", "失っ"
         };
     }
 
@@ -53,11 +64,14 @@ public class UIScript : MonoBehaviour
     {
         excuseAdjectiveWordsList = new List<string>()
         {
-            "犬", "猫", "石川", "矢野", "仲宗根",
-            "加藤", "髙橋", "渡辺", "佐藤", "田中",
-            "堀", "森永", "黒川", "伊藤", "中村",
-            "山口", "保科", "寺内", "磯", "三合",
-            "井上", "伝", "多田", "中川", "房安", "藤堂"
+            "可愛い", "忙しい", "危ない", "怪しい", "痛い",
+            "いやらしい", "胡散臭い", "薄い", "疑わしい", "うまい",
+            "うるさい", "大きな", "おかしい", "おそい", "恐ろしい",
+            "重たい", "かたい", "かゆい", "汚い", "きわどい",
+            "臭い", "くらい", "けばけばしい", "けわしい", "怖い", "寒い",
+            "しつこい", "ずるい", "せこい", "せまい", "高い", "だるい", "ちなまぐさい",
+            "つまらない", "つらい", "とうとい", "とんでもない", "ない", "ながい", "ながったらしい",
+            "貴重な", "古い", 
         };
     }
 
@@ -65,12 +79,31 @@ public class UIScript : MonoBehaviour
     {
         excuseTemplatesList = new List<string>()
         {
-            "〇〇が〇〇だから",
-            "〇〇していたから",
-            "〇〇のような〇〇を〇〇したから",
-            "〇〇を〇〇したから"
+            "「名詞」を「形容詞」「名詞」に「動詞」たから",
+            "「名詞」が「名詞」のような「形容詞」「名詞」に「動詞」たから",
+            "「動詞」ていたら「名詞」になって「名詞」が「動詞」て「動詞」たから",
+            "「形容詞」「名詞」が「動詞」て「名詞」が「動詞」たから",
+            "「名詞」を「形容詞」から「名詞」は「形容詞」「名詞」にすべきだから",
+            "「名詞」を「動詞」ながら「形容詞」「名詞」を「動詞」たから",
+            "「形容詞」「名詞」が「動詞」たら「名詞」が「動詞」て「名詞」になったから"
         };
         //templateArray = new GameObject[excuseTemplatesList.Count];
+    }
+
+    public void ThemeInit()
+    {
+        themeList = new List<string>()
+        {　
+            "会社の重要な会議に出られなかった！！　上司に怒られる！！",
+            "隣の家のおばさんのねこを踏んじゃった！！　おばさんに怒られる！！",          
+            "今日までの宿題ができてない！！　先生に怒られる！！",
+            "大学院を卒業するための研究が全く進んでいない！！　教授に怒られる！！",
+            "成績が下がってしまった！！　お母さんに怒られる！！",
+            "交際相手に浮気がばれてしまった！！　交際相手に怒られる！！",
+            "割り勘なのに所持金が足りない！！　友達に怒られる！！",
+            "エーミールが大事にしている貴重な蛾を潰してしまった！！　エーミールに怒られる！！",
+            ""
+        };
     }
 
     public void NounWordCardsInstantiate()
@@ -98,15 +131,17 @@ public class UIScript : MonoBehaviour
             text.text = excuseTemplatesList[i].ToString();
             //Debug.Log(text.text);
 
-            //canvasを親要素としてスクロールビューのContentに配置
+            //スクロールビューのContentに配置
             item.transform.SetParent(exTemplateContent.transform, true);
         }
     }
 
     public void ExcuseWords()
     {
+        //言い訳文章生成
+
+        //Templateタグのついたオブジェクトを探す(常に一つしかTemplateはアクティブでない)
         GameObject getTemplate = GameObject.FindGameObjectWithTag("Template");
-        Debug.Log(getTemplate.name);
         for(int i = 0; i < getTemplate.transform.childCount - 1; i++)
         {
             //取得したTemplateのi番目の子要素(ObjectPanel)にwordPanelが挿入されているか
@@ -124,40 +159,33 @@ public class UIScript : MonoBehaviour
             else
             {
                 pickWordsArray[i] = null;
-                //Debug.Log(string.Join(",", pickWordsArray));
             }
         }
-        //GameObject[] getVerbObjectPanelArray = GameObject.FindGameObjectsWithTag("VerbObjectPanel");
-        //GameObject[] getAdjObjectPanelArray = GameObject.FindGameObjectsWithTag("AdjObjectPanel");
+    }
 
-        //int wordArrayTotalLength = getNounObjectPanelArray.Length + getVerbObjectPanelArray.Length + getAdjObjectPanelArray.Length;
-        //int pickWordindex = wordArrayTotalLength;
-        //for(int i = 0; i < wordArrayTotalLength; i++)
-        //{
-        //    if (getAdjObjectPanelArray[i].transform.position.x < )
-        //}
+    public void SwitcherTextSet(int number)
+    {
+        Text text = TemplateDisplayswitcher.GetComponentInChildren<Text>();
+        text.text = excuseTemplatesList[number].ToString();
+    }
 
-        //{
-        //    if (getNounObjectPanelArray[i].transform.childCount > 0)
-        //    {
-        //        GameObject Panel = getNounObjectPanelArray[i].transform.GetChild(0).gameObject;
-        //        Text text1 = Panel.GetComponentInChildren<Text>();
-        //        pickWordsArray[0] = text1.text.ToString();
-        //        Debug.Log(string.Join(",", pickWordsArray));
-        //    }
-        //    else
-        //    {
-        //        pickWordsArray[i] = null;
-        //        Debug.Log(string.Join(",", pickWordsArray));
-        //    }
-        //}
+    public void TemplateDisplaySwitch(bool istemplate)
+    {
+        if (istemplate)
+        {
+            exTemplateScrollView.SetActive(true);
+        }
+        else
+        {
+            exTemplateScrollView.SetActive(false);
+        }
     }
 
     public void WordCardsInstantiate(string[] arrayName, List<string> listName, int number)
     {
         for (int i = 0; i < arrayName.Length; i++)
         {
-            //excuseWordsListからランダムに一つを取得してselectWordsArrayに入れる
+            //excuseWordsListからランダムに一つを取得してusableWordsArrayに入れる
             int n = Random.Range(0, listName.Count);
             string t = listName[n];
             arrayName[i] = t;

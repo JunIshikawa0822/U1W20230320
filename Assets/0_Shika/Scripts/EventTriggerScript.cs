@@ -7,6 +7,7 @@ public class EventTriggerScript : MonoBehaviour
 {
     GameObject DropArea;
     bool isCanvas;
+    public static bool isTemplateDisplay = false;
     public static int TemplateNumber = 0;
     GameObject preParent;
 
@@ -113,7 +114,14 @@ public class EventTriggerScript : MonoBehaviour
     public void OnTemplateMouseDown()
     {
         TemplateNumber = this.gameObject.transform.GetSiblingIndex();
+
+        isTemplateDisplay = !isTemplateDisplay;
         //Debug.Log(TemplateNumber);
+    }
+
+    public void TemplateDisplaySwitcher()
+    {
+        isTemplateDisplay = !isTemplateDisplay;
     }
 
     private void StartPanelCheck(RaycastResult target, string wordPanelName)
@@ -132,6 +140,7 @@ public class EventTriggerScript : MonoBehaviour
         }
         
     }
+
     private void ObjectPanelCheck(RaycastResult target, string wordPanelName)
     {
         DropArea = target.gameObject;

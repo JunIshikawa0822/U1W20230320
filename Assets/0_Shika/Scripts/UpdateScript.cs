@@ -28,6 +28,9 @@ public class UpdateScript: MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        importUIScript.SwitcherTextSet(EventTriggerScript.TemplateNumber);
+        importUIScript.TemplateDisplaySwitch(EventTriggerScript.isTemplateDisplay);
+
         importUIScript.ExcuseWords();
 
         //Debug.Log(EventTriggerScript.TemplateNumber);
