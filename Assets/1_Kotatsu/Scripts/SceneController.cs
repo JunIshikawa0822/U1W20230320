@@ -32,13 +32,13 @@ public class SceneController : MonoBehaviour
 
     public void ToMain()
     {
-        //SceneManager.LoadScene("Shika_Main");
+        SceneManager.LoadScene("Shika_Main1");
         Debug.Log("ToMain");
     }
 
     public void ToResult()
     {
-        //SceneManager.LoadScene("Shika_Result");
+        SceneManager.LoadScene("Result");
         Debug.Log("ToResult");
     }
 }
