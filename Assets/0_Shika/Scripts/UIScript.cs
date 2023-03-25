@@ -5,57 +5,120 @@ using UnityEngine.UI;
 
 public class UIScript : MonoBehaviour
 {
-    public List<string> excuseWordsList = new List<string>();
-    public List<string> excuseTemplatesList = new List<string>();
+    List<string> excuseNounWordsList = new List<string>();
+    List<string> excuseVerbWordsList = new List<string>();
+    List<string> excuseAdjectiveWordsList = new List<string>();
 
-    public string[] selectWordsArray = new string[5];
+    List<string> excuseTemplatesList = new List<string>();
+    List<string> themeList = new List<string>();
+
+    string[] usableNounWordsArray = new string[5];
+    string[] usableVerbWordsArray = new string[5];
+    string[] usableAdjectiveWordsArray = new string[5];
 
     public string[] pickWordsArray = new string[3];
 
     //public GameObject[] templateArray;
 
-    public GameObject wordPanelPrefab, excusePanelPrefab, startPanel, svContent;
+    public GameObject[] PartofSpeechPanelArray = new GameObject[3];
+    public GameObject[] StartPanelArray = new GameObject[3];
 
-    public GameObject ObjectPanel1, ObjectPanel2;
+    public GameObject excusePanelPrefab, exTemplateContent, TemplateDisplayswitcher, exTemplateScrollView;
+    
     // Start is called before the first frame update
 
-    public void WordListInit()
+    public void NounWordListInit()
     {
-        excuseWordsList = new List<string>() { "犬", "猫", "石川", "矢野", "仲宗根", "加藤", "髙橋", "渡辺", "佐藤", "田中", "堀", "森永", "黒川", "伊藤", "中村" };
+        excuseNounWordsList = new List<string>()
+        {
+            "僕", "お母さん", "彼女", "犬", "おじいさん", "おばあさん", 
+            "ご飯", "ゲーム機", "お茶", "スマホ", "コップ",
+            "定期券", "お金", "新聞", "風邪", "熱", "病気", "電車", "信号",
+            "道路", "車", "バス", "タクシー", "バイク", "自転車", "踏切", "フェリー",
+            "交差点", "ブレーキ", "パトカー", "バス停", "乗り換え", "自動運転", "トンネル",
+            "橋","田んぼ","溝","信号無視","一時停止","交通規制","煽り運転","運転見合わせ",
+            "駅前","駅ビル","レンタカー","リツイート","ジャンクフード","インフルエンサー",
+            "第二種電気工事士","タスク","フィットネスジム", "ビッグデータ", "秘書", "着ぐるみ",
+            "タコス","トラック","写生大会", "寿司","椅子","先輩","のど飴","廿日市市","ワンタイムパスワード",
+            "時間","学校","映画","旅行","お菓子","色","健康","政治家","街頭演説","ティッシュ配り",
+            "バンジージャンプ","ハイジャック","新規事業開発", "就活", "研究", "教授", "蛾"
+        };
+    }
+
+    public void VerbWordListInit()
+    {
+        excuseVerbWordsList = new List<string>()
+        {
+            "走っ", "壊し", "無視し", "拾っ",
+            "投げ", "座っ", "持っ", "倒し",
+            "寝", "見", "買っ", "調べ", "こぼし", "逃げ",
+            "忘れ", "聞い", "のぞい", "巻き込まれ",
+            "かかっ", "冷え", "終わっ", "変わっ", "負け",
+            "助け", "壊れ", "損ね", "逃し", "燃え", "揺れ",
+         　  "捕まっ", "絡まれ", "怯え", "傷つい", "ぶつけ",
+            "驚い", "なっ", "し", "見てい", "出会っ", "遅れ", "失っ"
+        };
+    }
+
+    public void AdjectiveWordsListInit()
+    {
+        excuseAdjectiveWordsList = new List<string>()
+        {
+            "可愛い", "忙しい", "危ない", "怪しい", "痛い",
+            "いやらしい", "胡散臭い", "薄い", "疑わしい", "うまい",
+            "うるさい", "大きな", "おかしい", "おそい", "恐ろしい",
+            "重たい", "かたい", "かゆい", "汚い", "きわどい",
+            "臭い", "くらい", "けばけばしい", "けわしい", "怖い", "寒い",
+            "しつこい", "ずるい", "せこい", "せまい", "高い", "だるい", "ちなまぐさい",
+            "つまらない", "つらい", "とうとい", "とんでもない", "ない", "ながい", "ながったらしい",
+            "貴重な", "古い", 
+        };
     }
 
     public void ExcuseTemplateInit()
     {
         excuseTemplatesList = new List<string>()
         {
-            "〇〇が〇〇だから",
-            "〇〇していたから",
-            "〇〇のような〇〇を〇〇したから",
-            "〇〇を〇〇したから"
+            "「名詞」を「形容詞」「名詞」に「動詞」たから",
+            "「名詞」が「名詞」のような「形容詞」「名詞」に「動詞」たから",
+            "「動詞」ていたら「名詞」になって「名詞」が「動詞」て「動詞」たから",
+            "「形容詞」「名詞」が「動詞」て「名詞」が「動詞」たから",
+            "「名詞」を「形容詞」から「名詞」は「形容詞」「名詞」にすべきだから",
+            "「名詞」を「動詞」ながら「形容詞」「名詞」を「動詞」たから",
+            "「形容詞」「名詞」が「動詞」たら「名詞」が「動詞」て「名詞」になったから"
         };
         //templateArray = new GameObject[excuseTemplatesList.Count];
     }
 
-    public void WordCardsInstantiate()
+    public void ThemeInit()
     {
-        for(int i = 0; i < selectWordsArray.Length; i++)
-        {
-            //excuseWordsListからランダムに一つを取得してselectWordsArrayに入れる
-            int n = Random.Range(0, excuseWordsList.Count);
-            string t = excuseWordsList[n];
-            selectWordsArray[i] = t;
+        themeList = new List<string>()
+        {　
+            "会社の重要な会議に出られなかった！！　上司に怒られる！！",
+            "隣の家のおばさんのねこを踏んじゃった！！　おばさんに怒られる！！",          
+            "今日までの宿題ができてない！！　先生に怒られる！！",
+            "大学院を卒業するための研究が全く進んでいない！！　教授に怒られる！！",
+            "成績が下がってしまった！！　お母さんに怒られる！！",
+            "交際相手に浮気がばれてしまった！！　交際相手に怒られる！！",
+            "割り勘なのに所持金が足りない！！　友達に怒られる！！",
+            "エーミールが大事にしている貴重な蛾を潰してしまった！！　エーミールに怒られる！！",
+            ""
+        };
+    }
 
-            //入れたワードをexcuseWordsListから削除して被りが起こらないようにする
-            excuseWordsList.RemoveAt(n);
+    public void NounWordCardsInstantiate()
+    {
+        WordCardsInstantiate(usableNounWordsArray, excuseNounWordsList, 0);
+    }
 
-            //パネルを生成し、ワードをセット
-            GameObject item = Instantiate(wordPanelPrefab);
-            Text text = item.GetComponentInChildren<Text>();
-            text.text = selectWordsArray[i].ToString();
+    public void VerbWordCardsInstantiate()
+    {
+        WordCardsInstantiate(usableVerbWordsArray, excuseVerbWordsList, 1);
+    }
 
-            //Panelを親要素としてPanelに配置
-            item.transform.SetParent(startPanel.transform, true);          
-        }
+    public void AdjectiveWordCardsInstantiate()
+    {
+        WordCardsInstantiate(usableAdjectiveWordsArray, excuseAdjectiveWordsList, 2);
     }
 
     public void ExcuseTemplateInstantiate()
@@ -68,48 +131,75 @@ public class UIScript : MonoBehaviour
             text.text = excuseTemplatesList[i].ToString();
             //Debug.Log(text.text);
 
-            //canvasを親要素としてスクロールビューのContentに配置
-            item.transform.SetParent(svContent.transform, true);
+            //スクロールビューのContentに配置
+            item.transform.SetParent(exTemplateContent.transform, true);
         }
     }
 
     public void ExcuseWords()
     {
-        if(ObjectPanel1.transform.childCount > 0)
+        //言い訳文章生成
+
+        //Templateタグのついたオブジェクトを探す(常に一つしかTemplateはアクティブでない)
+        GameObject getTemplate = GameObject.FindGameObjectWithTag("Template");
+        for(int i = 0; i < getTemplate.transform.childCount - 1; i++)
         {
-            GameObject Panel1 = ObjectPanel1.transform.GetChild(0).gameObject;
-            Text text1 = Panel1.GetComponentInChildren<Text>();
-            pickWordsArray[0] = text1.text.ToString();
-            Debug.Log(string.Join(",", pickWordsArray));
+            //取得したTemplateのi番目の子要素(ObjectPanel)にwordPanelが挿入されているか
+            if (getTemplate.transform.GetChild(i).gameObject.transform.childCount > 0)
+            {
+                //子要素(ObjectPanel)を取得
+                GameObject ObjectPanel = getTemplate.transform.GetChild(i).gameObject;
+                //孫要素(WordPanel)を取得
+                GameObject WordPanel = ObjectPanel.transform.GetChild(0).gameObject;
+                Text text = WordPanel.GetComponentInChildren<Text>();
+                pickWordsArray[i] = text.text.ToString();
+                //Debug.Log(string.Join(",", pickWordsArray));
+            }
+            //挿入されていない場合
+            else
+            {
+                pickWordsArray[i] = null;
+            }
+        }
+    }
+
+    public void SwitcherTextSet(int number)
+    {
+        Text text = TemplateDisplayswitcher.GetComponentInChildren<Text>();
+        text.text = excuseTemplatesList[number].ToString();
+    }
+
+    public void TemplateDisplaySwitch(bool istemplate)
+    {
+        if (istemplate)
+        {
+            exTemplateScrollView.SetActive(true);
         }
         else
         {
-            pickWordsArray[0] = null;
-            Debug.Log(string.Join(",", pickWordsArray));
+            exTemplateScrollView.SetActive(false);
         }
+    }
 
-        if (ObjectPanel2.transform.childCount > 0)
+    public void WordCardsInstantiate(string[] arrayName, List<string> listName, int number)
+    {
+        for (int i = 0; i < arrayName.Length; i++)
         {
-            GameObject Panel2 = ObjectPanel2.transform.GetChild(0).gameObject;
-            Text text2 = Panel2.GetComponentInChildren<Text>();
-            pickWordsArray[1] = text2.text.ToString();
-            Debug.Log(string.Join(",", pickWordsArray));
-        }
-        else
-        {
-            pickWordsArray[1] = null;
-            Debug.Log(string.Join(",", pickWordsArray));
-        }
+            //excuseWordsListからランダムに一つを取得してusableWordsArrayに入れる
+            int n = Random.Range(0, listName.Count);
+            string t = listName[n];
+            arrayName[i] = t;
 
-        //if (ObjectPanel3.transform.childCount > 0)
-        //{
-        //    GameObject Panel1 = ObjectPanel1.transform.GetChild(0).gameObject;
-        //    Text text1 = Panel1.GetComponentInChildren<Text>();
-        //    pickWordsArray[0] = text1.ToString();
-        //}
-        //else
-        //{
-        //    pickWordsArray[0] = null;
-        //}
+            //入れたワードをexcuseWordsListから削除して被りが起こらないようにする
+            listName.RemoveAt(n);
+
+            //パネルを生成し、ワードをセット
+            GameObject item = Instantiate(PartofSpeechPanelArray[number]);
+            Text text = item.GetComponentInChildren<Text>();
+            text.text = arrayName[i].ToString();
+
+            //Panelを親要素としてPanelに配置
+            item.transform.SetParent(StartPanelArray[number].transform, true);
+        }
     }
 }
