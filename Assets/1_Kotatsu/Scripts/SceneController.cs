@@ -19,7 +19,7 @@ public class SceneController : MonoBehaviour
 
     public void ToStart()
     {
-        //SceneManager.LoadScene("Start");
+        SceneManager.LoadScene("Start");
         Debug.Log("ToStart");
     }
 
