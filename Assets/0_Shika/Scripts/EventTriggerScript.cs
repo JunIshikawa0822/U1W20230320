@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class EventTriggerScript : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class EventTriggerScript : MonoBehaviour
     bool isCanvas;
     public static bool isTemplateDisplay = false;
     public static int TemplateNumber = 0;
+    public static string[] pickWordsArray;
     GameObject preParent;
 
     public void OnWordsPanelBeginDrag()
@@ -108,6 +110,31 @@ public class EventTriggerScript : MonoBehaviour
             //Debug.Log("Finally Index : " + index);
             transform.SetParent(DropArea.transform);
             transform.SetSiblingIndex(index);
+        }
+
+        //Templateタグがついたオブジェクトを捕捉
+        GameObject getTemplate = GameObject.FindGameObjectWithTag("Template");
+        //Debug.Log(getTemplate.transform.childCount);
+
+        for (int i = 0; i < getTemplate.transform.childCount - 1; i++)
+        {
+            //Debug.Log(string.Join(",", pickWordsArray));
+            //取得したTemplateのi番目の子要素(ObjectPanel)にwordPanelが挿入されているか
+            if (getTemplate.transform.GetChild(i).childCount > 0)
+            {
+                //子要素(ObjectPanel)を取得
+                GameObject ObjectPanel = getTemplate.transform.GetChild(i).gameObject;
+                //孫要素(WordPanel)を取得
+                GameObject WordPanel = ObjectPanel.transform.GetChild(0).gameObject;
+                Text text = WordPanel.GetComponentInChildren<Text>();
+                pickWordsArray[i] = text.text.ToString();
+                Debug.Log(string.Join(",", pickWordsArray));
+            }
+            //挿入されていない場合
+            else
+            {
+                pickWordsArray[i] = null;
+            }
         }
     }
 

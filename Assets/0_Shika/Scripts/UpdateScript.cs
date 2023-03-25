@@ -23,6 +23,8 @@ public class UpdateScript: MonoBehaviour
         //importUIScript.WordCardsInstantiate(importUIScript.usableAdjectiveWordsArray, importUIScript.excuseAdjectiveWordsList);
 
         importUIScript.ExcuseTemplateInstantiate();
+
+        EventTriggerScript.pickWordsArray = new string[5];
     }
 
     // Update is called once per frame
@@ -31,14 +33,12 @@ public class UpdateScript: MonoBehaviour
         importUIScript.SwitcherTextSet(EventTriggerScript.TemplateNumber);
         importUIScript.TemplateDisplaySwitch(EventTriggerScript.isTemplateDisplay);
 
-        importUIScript.ExcuseWords();
-
         //Debug.Log(EventTriggerScript.TemplateNumber);
         if(EventTriggerScript.TemplateNumber == 0)
         {
             //Debug.Log
             //    (importUIScript.pickWordsArray[0] + " , "
-            //    +  importUIScript.pickWordsArray[1] + " , "
+            //    + importUIScript.pickWordsArray[1] + " , "
             //    + importUIScript.pickWordsArray[2]);
         }        
     }

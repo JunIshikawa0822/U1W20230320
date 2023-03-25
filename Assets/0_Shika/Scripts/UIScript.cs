@@ -16,7 +16,7 @@ public class UIScript : MonoBehaviour
     string[] usableVerbWordsArray = new string[5];
     string[] usableAdjectiveWordsArray = new string[5];
 
-    public string[] pickWordsArray = new string[3];
+    //public string[] pickWordsArray;
 
     //public GameObject[] templateArray;
 
@@ -136,32 +136,35 @@ public class UIScript : MonoBehaviour
         }
     }
 
-    public void ExcuseWords()
-    {
-        //言い訳文章生成
+    //public void ExcuseWords()
+    //{
+    //    //言い訳文章生成
 
-        //Templateタグのついたオブジェクトを探す(常に一つしかTemplateはアクティブでない)
-        GameObject getTemplate = GameObject.FindGameObjectWithTag("Template");
-        for(int i = 0; i < getTemplate.transform.childCount - 1; i++)
-        {
-            //取得したTemplateのi番目の子要素(ObjectPanel)にwordPanelが挿入されているか
-            if (getTemplate.transform.GetChild(i).gameObject.transform.childCount > 0)
-            {
-                //子要素(ObjectPanel)を取得
-                GameObject ObjectPanel = getTemplate.transform.GetChild(i).gameObject;
-                //孫要素(WordPanel)を取得
-                GameObject WordPanel = ObjectPanel.transform.GetChild(0).gameObject;
-                Text text = WordPanel.GetComponentInChildren<Text>();
-                pickWordsArray[i] = text.text.ToString();
-                //Debug.Log(string.Join(",", pickWordsArray));
-            }
-            //挿入されていない場合
-            else
-            {
-                pickWordsArray[i] = null;
-            }
-        }
-    }
+    //    //Templateタグのついたオブジェクトを探す(常に一つしかTemplateはアクティブでない)
+    //    GameObject getTemplate = GameObject.FindGameObjectWithTag("Template");
+    //    //Debug.Log(getTemplate.transform.childCount);
+
+    //    for(int i = 0; i < getTemplate.transform.childCount - 1; i++)
+    //    {
+    //        //Debug.Log(string.Join(",", pickWordsArray));
+    //        //取得したTemplateのi番目の子要素(ObjectPanel)にwordPanelが挿入されているか
+    //        if (getTemplate.transform.GetChild(i).childCount > 0)
+    //        {
+    //            //子要素(ObjectPanel)を取得
+    //            GameObject ObjectPanel = getTemplate.transform.GetChild(i).gameObject;
+    //            //孫要素(WordPanel)を取得
+    //            GameObject WordPanel = ObjectPanel.transform.GetChild(0).gameObject;
+    //            Text text = WordPanel.GetComponentInChildren<Text>();
+    //            pickWordsArray[i] = text.text.ToString();
+    //            Debug.Log(string.Join(",", pickWordsArray));
+    //        }
+    //        //挿入されていない場合
+    //        else
+    //        {
+    //            pickWordsArray[i] = null;
+    //        }
+    //    }
+    //}
 
     public void SwitcherTextSet(int number)
     {
