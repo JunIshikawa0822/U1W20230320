@@ -36,10 +36,10 @@ public class UpdateScript: MonoBehaviour
         //Debug.Log(EventTriggerScript.TemplateNumber);
         if(EventTriggerScript.TemplateNumber == 0)
         {
-            Debug.Log
-                (importUIScript.pickWordsArray[0] + " , "
-                +  importUIScript.pickWordsArray[1] + " , "
-                + importUIScript.pickWordsArray[2]);
+            //Debug.Log
+            //    (importUIScript.pickWordsArray[0] + " , "
+            //    +  importUIScript.pickWordsArray[1] + " , "
+            //    + importUIScript.pickWordsArray[2]);
         }        
     }
 }
