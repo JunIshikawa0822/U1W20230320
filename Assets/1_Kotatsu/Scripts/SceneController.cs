@@ -19,14 +19,14 @@ public class SceneController : MonoBehaviour
 
     public void ToStart()
     {
-        //SceneManager.LoadScene("Shika_Start");
+        //SceneManager.LoadScene("Start");
         Debug.Log("ToStart");
     }
 
 
     public void ToTheme()
     {
-        //SceneManager.LoadScene("Theme");
+        SceneManager.LoadScene("Theme");
         Debug.Log("ToTheme");
     }
 
