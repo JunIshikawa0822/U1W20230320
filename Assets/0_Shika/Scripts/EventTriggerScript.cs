@@ -7,21 +7,25 @@ public class EventTriggerScript : MonoBehaviour
 {
     GameObject DropArea;
     bool isCanvas;
+    public static bool isTemplateDisplay = false;
+    public static int TemplateNumber = 0;
+    GameObject preParent;
 
-    public void OnBeginDrag()
+    public void OnWordsPanelBeginDrag()
     {
-        //Debug.Log("押された");
-        transform.parent = GameObject.Find("Canvas").transform;
+        //Debug.Log("押された");       
+        preParent = transform.parent.gameObject;
         isCanvas = true;
         //Debug.Log(isCanvas);
+        transform.parent = GameObject.Find("Canvas").transform;
     }
 
-    public void OnDrag()
+    public void OnWordsPanelDrag()
     {
         transform.position = Input.mousePosition;
     }
 
-    public void OnEndDrag()
+    public void OnWordsPanelEndDrag()
     {
         //Debug.Log("終わった");
 
@@ -37,11 +41,47 @@ public class EventTriggerScript : MonoBehaviour
 
         foreach (RaycastResult target in getUIList)
         {
-            if (target.gameObject.name == "TestStartPanel" || target.gameObject.name == "TestEndPanel")
+            //Debug.Log(target.gameObject.name);
+            if (target.gameObject.tag == "NounStartPanel")
             {
-                DropArea = target.gameObject;
-                //Debug.Log("TestPanel検知成功");
-                isCanvas = false;
+                StartPanelCheck(target, "NounWordsPanel");
+                break;
+            }
+
+            else if (target.gameObject.tag == "VerbStartPanel")
+            {
+                StartPanelCheck(target, "VerbWordsPanel");
+                break;
+            }
+
+            else if (target.gameObject.tag == "AdjStartPanel")
+            {
+                StartPanelCheck(target, "AdjWordsPanel");
+                break;
+            }
+
+            else if (target.gameObject.tag == "NounObjectPanel")
+            {
+                ObjectPanelCheck(target, "NounWordsPanel");
+                break;
+            }
+            else if(target.gameObject.tag == "VerbObjectPanel")
+            {
+                ObjectPanelCheck(target, "VerbWordsPanel");
+                break;
+            }
+            else if (target.gameObject.tag == "AdjObjectPanel")
+            {
+                ObjectPanelCheck(target, "AdjWordsPanel");
+                break;
+            }
+
+            else
+            {
+                DropArea = preParent;
+                //Debug.Log("Canvas検知成功");
+                //Debug.Log(preParent.name);
+                transform.SetParent(DropArea.transform);
             }
         }
 
@@ -53,10 +93,6 @@ public class EventTriggerScript : MonoBehaviour
             //Debug.Log(DropArea.transform.childCount);
             for (int i = 0; i < DropArea.transform.childCount; i++)
             {
-                //Debug.Log(i);
-                //Debug.Log("私は" + transform.position.y);
-                //Debug.Log(DropArea.transform.GetChild(i).position.y);
-                //Debug.Log(isCanvas);
                 if (transform.position.y > DropArea.transform.GetChild(i).position.y)
                 {
                     index = i;
@@ -73,6 +109,50 @@ public class EventTriggerScript : MonoBehaviour
             transform.SetParent(DropArea.transform);
             transform.SetSiblingIndex(index);
         }
-    }        
+    }
+
+    public void OnTemplateMouseDown()
+    {
+        TemplateNumber = this.gameObject.transform.GetSiblingIndex();
+
+        isTemplateDisplay = !isTemplateDisplay;
+        //Debug.Log(TemplateNumber);
+    }
+
+    public void TemplateDisplaySwitcher()
+    {
+        isTemplateDisplay = !isTemplateDisplay;
+    }
+
+    private void StartPanelCheck(RaycastResult target, string wordPanelName)
+    {
+             
+        if (this.gameObject.tag == wordPanelName)
+        {
+            DropArea = target.gameObject;
+            transform.SetParent(DropArea.transform);
+            isCanvas = false;
+        }
+        else
+        {
+            DropArea = preParent;
+            transform.SetParent(DropArea.transform);
+        }
+        
+    }
+
+    private void ObjectPanelCheck(RaycastResult target, string wordPanelName)
+    {
+        DropArea = target.gameObject;
+        if (DropArea.transform.childCount < 1 && this.gameObject.tag == wordPanelName)
+        {
+            transform.SetParent(DropArea.transform);
+        }
+        else
+        {
+            DropArea = preParent;
+            transform.SetParent(DropArea.transform);
+        }
+    }
 }
 
