@@ -5,7 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/1_Kotatsu/Scene/Start.unity
+    guid: 35ef8a175b93b49b9baa9bdbd0de7f16
+  - enabled: 1
+    path: Assets/1_Kotatsu/Scene/Theme.unity
+    guid: a7b893d75951a42ccb902bd5144e6d64
+  - enabled: 1
+    path: Assets/1_Kotatsu/Scene/Shika_Main1.unity
+    guid: 5d852a96c7ff04fb19d5c657b37b25e4
+  - enabled: 1
+    path: Assets/1_Kotatsu/Scene/Result.unity
+    guid: d0b8b4caca2074acea441e413c37c9df
   m_configObjects: {}

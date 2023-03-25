@@ -3,7 +3,18 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - StartPanel
+  - AdjWordsPanel
+  - NounWordsPanel
+  - VerbWordsPanel
+  - AdjStartPanel
+  - NounStartPanel
+  - VerbStartPanel
+  - NounObjectPanel
+  - VerbObjectPanel
+  - AdjObjectPanel
+  - Template
   layers:
   - Default
   - TransparentFX
