@@ -5,9 +5,6 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/Start.unity
     guid: 35ef8a175b93b49b9baa9bdbd0de7f16
@@ -16,8 +13,5 @@ EditorBuildSettings:
     guid: a7b893d75951a42ccb902bd5144e6d64
   - enabled: 1
     path: Assets/Scenes/Shika_Main1.unity
-    guid: 5d852a96c7ff04fb19d5c657b37b25e4
-  - enabled: 1
-    path: Assets/Scenes/Result.unity
-    guid: d0b8b4caca2074acea441e413c37c9df
+    guid: e1347ef3ca2a444cfb3b385b07b6c3ea
   m_configObjects: {}

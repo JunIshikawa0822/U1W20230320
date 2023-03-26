@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class EventTriggerScript : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class EventTriggerScript : MonoBehaviour
     bool isCanvas;
     public static bool isTemplateDisplay = false;
     public static int TemplateNumber = 0;
+    public static string[] pickWordsArray;
+    public static string excuseWord;
     GameObject preParent;
 
     public void OnWordsPanelBeginDrag()
@@ -109,11 +112,54 @@ public class EventTriggerScript : MonoBehaviour
             transform.SetParent(DropArea.transform);
             transform.SetSiblingIndex(index);
         }
+
+        //Templateタグがついたオブジェクトを捕捉
+        GameObject getTemplate = GameObject.FindGameObjectWithTag("Template");
+        //Debug.Log(getTemplate.transform.childCount);
+
+        for (int i = 0; i < getTemplate.transform.childCount - 1; i++)
+        {
+            //Debug.Log(string.Join(",", pickWordsArray));
+            //取得したTemplateのi番目の子要素(ObjectPanel)にwordPanelが挿入されているか
+            if (getTemplate.transform.GetChild(i).childCount > 0)
+            {
+                //子要素(ObjectPanel)を取得
+                GameObject ObjectPanel = getTemplate.transform.GetChild(i).gameObject;
+                //孫要素(WordPanel)を取得
+                GameObject WordPanel = ObjectPanel.transform.GetChild(0).gameObject;
+                Text text = WordPanel.GetComponentInChildren<Text>();
+                pickWordsArray[i] = text.text.ToString();
+                //Debug.Log(string.Join(",", pickWordsArray));
+            }
+            //挿入されていない場合
+            else
+            {
+                pickWordsArray[i] = null;
+            }
+        }
     }
 
     public void OnTemplateMouseDown()
     {
         TemplateNumber = this.gameObject.transform.GetSiblingIndex();
+
+        GameObject Templates = GameObject.Find("Templates");
+        //Debug.Log(getTemplate.transform.childCount);
+
+        for (int i = 0; i < Templates.transform.childCount; i++)
+        {
+            GameObject displayedTemplate = Templates.transform.GetChild(i).gameObject;
+            //取得したTemplateのi番目の子要素(ObjectPanel)にwordPanelが挿入されているか
+            if (i == TemplateNumber)
+            {
+                displayedTemplate.SetActive(true);
+            }
+            //挿入されていない場合
+            else
+            {
+                displayedTemplate.SetActive(false);
+            }
+        }
 
         isTemplateDisplay = !isTemplateDisplay;
         //Debug.Log(TemplateNumber);
@@ -153,6 +199,23 @@ public class EventTriggerScript : MonoBehaviour
             DropArea = preParent;
             transform.SetParent(DropArea.transform);
         }
+    }
+
+    public void OnDetermineButtonMouseDown()
+    {
+        List<string> excuseWordList = new List<string>
+        {
+            pickWordsArray[0] + "が" + pickWordsArray[1] + pickWordsArray[2] + "を" + pickWordsArray[3] + "たから",
+            pickWordsArray[0] + "が" + pickWordsArray[1] + "のような" + pickWordsArray[2] + pickWordsArray[3] + "に" + pickWordsArray[4] + "たから",
+            pickWordsArray[0] + "に" + pickWordsArray[1] + "ていたら" + pickWordsArray[2] + "が" + pickWordsArray[3] + "に" + pickWordsArray[4] + "たから",
+            pickWordsArray[0] + pickWordsArray[1] + "が" + pickWordsArray[2] + "て" + pickWordsArray[3] + "が" + pickWordsArray[4] + "たから",
+            pickWordsArray[0] + "が" + pickWordsArray[1] + "から" + pickWordsArray[2] + "が" + pickWordsArray[3] + pickWordsArray[4] + "を" +pickWordsArray[5] + "たから",
+            pickWordsArray[0] + "を" + pickWordsArray[1] + "ながら" + pickWordsArray[2] + pickWordsArray[3] + "を" + pickWordsArray[4] + "たから",
+            pickWordsArray[0] + pickWordsArray[1] + "が" + pickWordsArray[2] + "たら" + pickWordsArray[3] + pickWordsArray[4] + "が" + pickWordsArray[5] + "たから"
+        };
+       
+        excuseWord = excuseWordList[TemplateNumber];
+        //Debug.Log(excuseWordList[TemplateNumber]);
     }
 }
 
