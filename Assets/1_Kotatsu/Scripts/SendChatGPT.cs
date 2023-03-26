@@ -28,8 +28,8 @@ public class SendChatGPT : MonoBehaviour
 
     [SerializeField]
     private Button ExecButton;
-    [SerializeField]
-    private Button QuitButton;
+    //[SerializeField]
+    //private Button QuitButton;
 
     private void Start()
     {
@@ -50,11 +50,11 @@ public class SendChatGPT : MonoBehaviour
             }
 
         });
-        // 終了ボタン
-        QuitButton.onClick.AddListener(() =>
-        {
-            Application.Quit();
-        });
+        //// 終了ボタン
+        //QuitButton.onClick.AddListener(() =>
+        //{
+        //    Application.Quit();
+        //});
     }
 
     /// <summary>

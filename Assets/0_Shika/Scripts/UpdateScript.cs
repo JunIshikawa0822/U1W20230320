@@ -24,22 +24,13 @@ public class UpdateScript: MonoBehaviour
 
         importUIScript.ExcuseTemplateInstantiate();
 
-        EventTriggerScript.pickWordsArray = new string[5];
+        EventTriggerScript.pickWordsArray = new string[6];
     }
 
     // Update is called once per frame
     void Update()
     {
         importUIScript.SwitcherTextSet(EventTriggerScript.TemplateNumber);
-        importUIScript.TemplateDisplaySwitch(EventTriggerScript.isTemplateDisplay);
-
-        //Debug.Log(EventTriggerScript.TemplateNumber);
-        if(EventTriggerScript.TemplateNumber == 0)
-        {
-            //Debug.Log
-            //    (importUIScript.pickWordsArray[0] + " , "
-            //    + importUIScript.pickWordsArray[1] + " , "
-            //    + importUIScript.pickWordsArray[2]);
-        }        
+        importUIScript.TemplateDisplaySwitch(EventTriggerScript.isTemplateDisplay);       
     }
 }

@@ -79,13 +79,13 @@ public class UIScript : MonoBehaviour
     {
         excuseTemplatesList = new List<string>()
         {
-            "「名詞」を「形容詞」「名詞」に「動詞」たから",
+            "「名詞」が「形容詞」「名詞」に「動詞」たから",
             "「名詞」が「名詞」のような「形容詞」「名詞」に「動詞」たから",
-            "「動詞」ていたら「名詞」になって「名詞」が「動詞」て「動詞」たから",
+            "「名詞」に「動詞」ていたら「名詞」が「名詞」に「動詞」たから",
             "「形容詞」「名詞」が「動詞」て「名詞」が「動詞」たから",
-            "「名詞」を「形容詞」から「名詞」は「形容詞」「名詞」にすべきだから",
+            "「名詞」が「形容詞」から「名詞」が「形容詞」「名詞」を「動詞」たから",
             "「名詞」を「動詞」ながら「形容詞」「名詞」を「動詞」たから",
-            "「形容詞」「名詞」が「動詞」たら「名詞」が「動詞」て「名詞」になったから"
+            "「形容詞」「名詞」が「動詞」たら「形容詞」「名詞」が「動詞」たから"
         };
         //templateArray = new GameObject[excuseTemplatesList.Count];
     }
@@ -101,8 +101,7 @@ public class UIScript : MonoBehaviour
             "成績が下がってしまった！！　お母さんに怒られる！！",
             "交際相手に浮気がばれてしまった！！　交際相手に怒られる！！",
             "割り勘なのに所持金が足りない！！　友達に怒られる！！",
-            "エーミールが大事にしている貴重な蛾を潰してしまった！！　エーミールに怒られる！！",
-            ""
+            "エーミールが大事にしている貴重な蛾を潰してしまった！！　エーミールに怒られる！！"
         };
     }
 
@@ -135,36 +134,6 @@ public class UIScript : MonoBehaviour
             item.transform.SetParent(exTemplateContent.transform, true);
         }
     }
-
-    //public void ExcuseWords()
-    //{
-    //    //言い訳文章生成
-
-    //    //Templateタグのついたオブジェクトを探す(常に一つしかTemplateはアクティブでない)
-    //    GameObject getTemplate = GameObject.FindGameObjectWithTag("Template");
-    //    //Debug.Log(getTemplate.transform.childCount);
-
-    //    for(int i = 0; i < getTemplate.transform.childCount - 1; i++)
-    //    {
-    //        //Debug.Log(string.Join(",", pickWordsArray));
-    //        //取得したTemplateのi番目の子要素(ObjectPanel)にwordPanelが挿入されているか
-    //        if (getTemplate.transform.GetChild(i).childCount > 0)
-    //        {
-    //            //子要素(ObjectPanel)を取得
-    //            GameObject ObjectPanel = getTemplate.transform.GetChild(i).gameObject;
-    //            //孫要素(WordPanel)を取得
-    //            GameObject WordPanel = ObjectPanel.transform.GetChild(0).gameObject;
-    //            Text text = WordPanel.GetComponentInChildren<Text>();
-    //            pickWordsArray[i] = text.text.ToString();
-    //            Debug.Log(string.Join(",", pickWordsArray));
-    //        }
-    //        //挿入されていない場合
-    //        else
-    //        {
-    //            pickWordsArray[i] = null;
-    //        }
-    //    }
-    //}
 
     public void SwitcherTextSet(int number)
     {
