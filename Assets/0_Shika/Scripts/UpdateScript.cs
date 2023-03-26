@@ -5,6 +5,7 @@ using UnityEngine;
 public class UpdateScript: MonoBehaviour
 {
     public UIScript importUIScript;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -23,23 +24,15 @@ public class UpdateScript: MonoBehaviour
         //importUIScript.WordCardsInstantiate(importUIScript.usableAdjectiveWordsArray, importUIScript.excuseAdjectiveWordsList);
 
         importUIScript.ExcuseTemplateInstantiate();
+
+        EventTriggerScript.pickWordsArray = new string[6];
+        //Debug.Log(ThemeRandom.index);
     }
 
     // Update is called once per frame
     void Update()
     {
         importUIScript.SwitcherTextSet(EventTriggerScript.TemplateNumber);
-        importUIScript.TemplateDisplaySwitch(EventTriggerScript.isTemplateDisplay);
-
-        importUIScript.ExcuseWords();
-
-        //Debug.Log(EventTriggerScript.TemplateNumber);
-        if(EventTriggerScript.TemplateNumber == 0)
-        {
-            //Debug.Log
-            //    (importUIScript.pickWordsArray[0] + " , "
-            //    +  importUIScript.pickWordsArray[1] + " , "
-            //    + importUIScript.pickWordsArray[2]);
-        }        
+        importUIScript.TemplateDisplaySwitch(EventTriggerScript.isTemplateDisplay);       
     }
 }
