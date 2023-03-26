@@ -11,6 +11,7 @@ public class EventTriggerScript : MonoBehaviour
     public static bool isTemplateDisplay = false;
     public static int TemplateNumber = 0;
     public static string[] pickWordsArray;
+    public static string excuseWord;
     GameObject preParent;
 
     public void OnWordsPanelBeginDrag()
@@ -212,8 +213,9 @@ public class EventTriggerScript : MonoBehaviour
             pickWordsArray[0] + "を" + pickWordsArray[1] + "ながら" + pickWordsArray[2] + pickWordsArray[3] + "を" + pickWordsArray[4] + "たから",
             pickWordsArray[0] + pickWordsArray[1] + "が" + pickWordsArray[2] + "たら" + pickWordsArray[3] + pickWordsArray[4] + "が" + pickWordsArray[5] + "たから"
         };
-
-        Debug.Log(excuseWordList[TemplateNumber]);
+       
+        excuseWord = excuseWordList[TemplateNumber];
+        //Debug.Log(excuseWordList[TemplateNumber]);
     }
 }
 

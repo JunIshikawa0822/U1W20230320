@@ -5,6 +5,7 @@ using UnityEngine;
 public class UpdateScript: MonoBehaviour
 {
     public UIScript importUIScript;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +26,7 @@ public class UpdateScript: MonoBehaviour
         importUIScript.ExcuseTemplateInstantiate();
 
         EventTriggerScript.pickWordsArray = new string[6];
+        //Debug.Log(ThemeRandom.index);
     }
 
     // Update is called once per frame
